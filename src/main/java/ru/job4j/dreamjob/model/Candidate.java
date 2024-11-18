@@ -9,13 +9,16 @@ public class Candidate {
     private String title;
 
     private String description;
-    private LocalDateTime creationDate;
+    private LocalDateTime creationDate = LocalDateTime.now();
 
     public Candidate(int id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.creationDate = LocalDateTime.now();
+    }
+
+    public Candidate() {
     }
 
     public int getId() {

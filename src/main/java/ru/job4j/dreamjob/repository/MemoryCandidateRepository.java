@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Repository
 public class MemoryCandidateRepository implements CandidateRepository {
-    private static final MemoryCandidateRepository INSTANCE = new MemoryCandidateRepository();
 
     private int nextId = 1;
 
@@ -23,10 +22,6 @@ public class MemoryCandidateRepository implements CandidateRepository {
         save(new Candidate(0, "Andrey Andreev", "Description for candidate 4"));
         save(new Candidate(0, "Stas Stasov", "Description for candidate 5"));
         save(new Candidate(0, "Alexey Alexseev", "Description for candidate 6"));
-    }
-
-    public static MemoryCandidateRepository getInstance() {
-        return INSTANCE;
     }
 
     @Override

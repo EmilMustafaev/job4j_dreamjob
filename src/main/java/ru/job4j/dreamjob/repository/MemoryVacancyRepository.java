@@ -20,12 +20,12 @@ public class MemoryVacancyRepository implements VacancyRepository {
     private final Map<Integer, Vacancy> vacancies = new HashMap<>();
 
     private MemoryVacancyRepository() {
-        save(new Vacancy(0, "Intern Java Developer", "Description for vacancy 1", LocalDateTime.now(), true, 1));
-        save(new Vacancy(0, "Junior Java Developer", "Description for vacancy 2", LocalDateTime.now(), true, 1));
-        save(new Vacancy(0, "Junior+ Java Developer", "Description for vacancy 3", LocalDateTime.now(), true, 2));
-        save(new Vacancy(0, "Middle Java Developer", "Description for vacancy 4", LocalDateTime.now(), true, 2));
-        save(new Vacancy(0, "Middle+ Java Developer", "Description for vacancy 5", LocalDateTime.now(), true, 3));
-        save(new Vacancy(0, "Senior Java Developer", "Description for vacancy 6", LocalDateTime.now(), true, 3));
+        save(new Vacancy(0, "Intern Java Developer", "Description for vacancy 1", LocalDateTime.now(), true, 1, 0));
+        save(new Vacancy(0, "Junior Java Developer", "Description for vacancy 2", LocalDateTime.now(), true, 1, 0));
+        save(new Vacancy(0, "Junior+ Java Developer", "Description for vacancy 3", LocalDateTime.now(), true, 2, 0));
+        save(new Vacancy(0, "Middle Java Developer", "Description for vacancy 4", LocalDateTime.now(), true, 2, 0));
+        save(new Vacancy(0, "Middle+ Java Developer", "Description for vacancy 5", LocalDateTime.now(), true, 3, 0));
+        save(new Vacancy(0, "Senior Java Developer", "Description for vacancy 6", LocalDateTime.now(), true, 3, 0));
     }
 
 
@@ -47,7 +47,11 @@ public class MemoryVacancyRepository implements VacancyRepository {
                 (id, oldVacancy) ->
                         new Vacancy(oldVacancy.getId(),
                                 vacancy.getTitle(),
-                                oldVacancy.getDescription(), oldVacancy.getCreationDate(), oldVacancy.getVisible(), oldVacancy.getCityId())) != null;
+                                oldVacancy.getDescription(),
+                                oldVacancy.getCreationDate(),
+                                oldVacancy.getVisible(),
+                                oldVacancy.getCityId(),
+                                oldVacancy.getFileId())) != null;
     }
 
     @Override

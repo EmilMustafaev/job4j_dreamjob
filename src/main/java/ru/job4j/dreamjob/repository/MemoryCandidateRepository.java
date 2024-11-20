@@ -19,12 +19,12 @@ public class MemoryCandidateRepository implements CandidateRepository {
     private final Map<Integer, Candidate> candidates = new HashMap<>();
 
     private MemoryCandidateRepository() {
-        save(new Candidate(0, "Emil' Mustafaev", "Description for candidate 1", 1));
-        save(new Candidate(0, "Ivan Ivanov", "Description for candidate 2", 1));
-        save(new Candidate(0, "Petr Petrov", "Description for candidate 3", 2));
-        save(new Candidate(0, "Andrey Andreev", "Description for candidate 4", 2));
-        save(new Candidate(0, "Stas Stasov", "Description for candidate 5", 3));
-        save(new Candidate(0, "Alexey Alexseev", "Description for candidate 6", 3));
+        save(new Candidate(0, "Emil' Mustafaev", "Description for candidate 1", 1, 0));
+        save(new Candidate(0, "Ivan Ivanov", "Description for candidate 2", 1, 0));
+        save(new Candidate(0, "Petr Petrov", "Description for candidate 3", 2, 0));
+        save(new Candidate(0, "Andrey Andreev", "Description for candidate 4", 2, 0));
+        save(new Candidate(0, "Stas Stasov", "Description for candidate 5", 3, 0));
+        save(new Candidate(0, "Alexey Alexseev", "Description for candidate 6", 3, 0));
     }
 
     @Override
@@ -45,7 +45,9 @@ public class MemoryCandidateRepository implements CandidateRepository {
                 (id, oldCandidate) ->
                         new Candidate(oldCandidate.getId(),
                                 candidate.getTitle(),
-                                oldCandidate.getDescription(), oldCandidate.getCityId())) != null;
+                                oldCandidate.getDescription(),
+                                oldCandidate.getCityId(),
+                                oldCandidate.getFileId())) != null;
     }
 
     @Override

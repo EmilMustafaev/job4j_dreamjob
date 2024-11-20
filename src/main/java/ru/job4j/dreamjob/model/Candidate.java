@@ -11,11 +11,14 @@ public class Candidate {
     private String description;
     private LocalDateTime creationDate = LocalDateTime.now();
 
-    public Candidate(int id, String title, String description) {
+    private int cityId;
+
+    public Candidate(int id, String title, String description, int cityId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.creationDate = LocalDateTime.now();
+        this.cityId = cityId;
     }
 
     public Candidate() {
@@ -51,6 +54,14 @@ public class Candidate {
 
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 
     @Override

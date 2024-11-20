@@ -4,6 +4,7 @@ import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Repository;
 import ru.job4j.dreamjob.model.Vacancy;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,12 +20,12 @@ public class MemoryVacancyRepository implements VacancyRepository {
     private final Map<Integer, Vacancy> vacancies = new HashMap<>();
 
     private MemoryVacancyRepository() {
-        save(new Vacancy(0, "Intern Java Developer", "Description for vacancy 1"));
-        save(new Vacancy(0, "Junior Java Developer", "Description for vacancy 2"));
-        save(new Vacancy(0, "Junior+ Java Developer", "Description for vacancy 3"));
-        save(new Vacancy(0, "Middle Java Developer", "Description for vacancy 4"));
-        save(new Vacancy(0, "Middle+ Java Developer", "Description for vacancy 5"));
-        save(new Vacancy(0, "Senior Java Developer", "Description for vacancy 6"));
+        save(new Vacancy(0, "Intern Java Developer", "Description for vacancy 1", LocalDateTime.now(), true));
+        save(new Vacancy(0, "Junior Java Developer", "Description for vacancy 2", LocalDateTime.now(), true));
+        save(new Vacancy(0, "Junior+ Java Developer", "Description for vacancy 3", LocalDateTime.now(), true));
+        save(new Vacancy(0, "Middle Java Developer", "Description for vacancy 4", LocalDateTime.now(), true));
+        save(new Vacancy(0, "Middle+ Java Developer", "Description for vacancy 5", LocalDateTime.now(), true));
+        save(new Vacancy(0, "Senior Java Developer", "Description for vacancy 6", LocalDateTime.now(), true));
     }
 
 
@@ -46,7 +47,7 @@ public class MemoryVacancyRepository implements VacancyRepository {
                 (id, oldVacancy) ->
                         new Vacancy(oldVacancy.getId(),
                                 vacancy.getTitle(),
-                                oldVacancy.getDescription())) != null;
+                                oldVacancy.getDescription(), oldVacancy.getCreationDate(), oldVacancy.getVisible())) != null;
     }
 
     @Override

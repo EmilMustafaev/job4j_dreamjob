@@ -2,6 +2,7 @@ package ru.job4j.dreamjob.repository;
 
 import org.junit.jupiter.api.*;
 import org.sql2o.Sql2o;
+import org.sql2o.Sql2oException;
 import ru.job4j.dreamjob.configuration.DatasourceConfiguration;
 import ru.job4j.dreamjob.model.Candidate;
 import ru.job4j.dreamjob.model.File;
@@ -14,7 +15,9 @@ import java.util.Properties;
 import static java.time.LocalDateTime.now;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-@Disabled
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 class Sql2oUserRepositoryTest {
 
     private static Sql2oUserRepository sql2oUserRepository;
@@ -46,13 +49,26 @@ class Sql2oUserRepositoryTest {
         }
     }
 
-    @Disabled
     @Test
     void whenSaveUserThenUserIsPersisted() {
         Optional<User> user = sql2oUserRepository.save(new User(0, "test@example.com", "username", "password"));
         Optional<User> savedUser = sql2oUserRepository.findByEmailAndPassword(user.get().getEmail(), user.get().getPassword());
 
         assertThat(savedUser).usingRecursiveComparison().isEqualTo(user);
+    }
+
+
+    @Test
+    public void whenUserAlreadyExists() {
+
+        Optional<User> user1 = sql2oUserRepository.save(new User(0, "test@example.com", "username1", "password1"));
+        Optional<User> user2 = sql2oUserRepository.save(new User(0, "test@example.com", "username2", "password2"));
+
+        Optional<User> savedUser1 = sql2oUserRepository.findByEmailAndPassword(user1.get().getEmail(), user1.get().getPassword());
+        Optional<User> savedUser2 = sql2oUserRepository.findByEmailAndPassword(user2.get().getEmail(), user2.get().getPassword());
+
+        assertTrue(savedUser1.isPresent());
+        assertTrue(savedUser2.isEmpty());
     }
 
 }

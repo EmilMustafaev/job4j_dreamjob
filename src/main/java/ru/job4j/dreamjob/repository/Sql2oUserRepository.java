@@ -9,6 +9,7 @@ import ru.job4j.dreamjob.model.Candidate;
 import ru.job4j.dreamjob.model.User;
 import ru.job4j.dreamjob.model.Vacancy;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -36,7 +37,7 @@ public class Sql2oUserRepository implements UserRepository {
             int generatedId = query.executeUpdate().getKey(Integer.class);
             user.setId(generatedId);
         } catch (Sql2oException exception) {
-            LOG.error(String.valueOf(exception));
+            LOG.error("Пользователь с такой почтой уже существует!");
         }
         return Optional.of(user);
     }

@@ -40,7 +40,7 @@ public class Sql2oUserRepository implements UserRepository {
         } catch (Sql2oException exception) {
             LOG.error("Пользователь с такой почтой уже существует!");
         }
-        return Optional.ofNullable(user);
+        return Optional.empty();
     }
 
     @Override

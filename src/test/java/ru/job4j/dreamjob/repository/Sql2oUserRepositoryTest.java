@@ -60,15 +60,12 @@ class Sql2oUserRepositoryTest {
 
     @Test
     public void whenUserAlreadyExists() {
-
         Optional<User> user1 = sql2oUserRepository.save(new User(0, "test@example.com", "username1", "password1"));
         Optional<User> user2 = sql2oUserRepository.save(new User(0, "test@example.com", "username2", "password2"));
 
-        Optional<User> savedUser1 = sql2oUserRepository.findByEmailAndPassword(user1.get().getEmail(), user1.get().getPassword());
-        Optional<User> savedUser2 = sql2oUserRepository.findByEmailAndPassword(user2.get().getEmail(), user2.get().getPassword());
-
-        assertTrue(savedUser1.isPresent());
-        assertTrue(savedUser2.isEmpty());
+        assertTrue(user1.isPresent());
+        assertTrue(user2.isEmpty());
     }
+
 
 }

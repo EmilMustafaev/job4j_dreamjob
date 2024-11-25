@@ -23,7 +23,7 @@ public class CandidateController {
 
     private final CityService cityService;
 
-    public CandidateController(CandidateService candidateService, CityService cityService, FileService fileService) {
+    public CandidateController(CandidateService candidateService, CityService cityService) {
         this.candidateService = candidateService;
         this.cityService = cityService;
     }
